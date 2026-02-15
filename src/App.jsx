@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { AnimatePresence } from 'framer-motion'
+import { MotionConfig } from 'framer-motion'
 import { HashRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -43,23 +43,21 @@ function AppShell() {
   )
 
   return (
-    <div className="relative min-h-screen bg-slate-50 text-slate-900 transition-colors duration-500 dark:bg-slate-950 dark:text-slate-100">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-radial-grid bg-[size:20px_20px] opacity-80" />
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-br from-sky-100/70 via-transparent to-cyan-50/50 dark:from-slate-900 dark:via-slate-950 dark:to-cyan-950/20" />
+    <MotionConfig reducedMotion="always" transition={{ duration: 0.01 }}>
+      <div className="relative min-h-screen bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
       <Navbar theme={theme} setTheme={setTheme} />
       <main className="mx-auto w-full max-w-6xl px-4 pb-28 pt-28 sm:px-6 lg:px-8">
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Navigate to="/about" replace />} />
-            {routeConfig.map((route) => (
-              <Route key={route.path} path={route.path} element={route.element} />
-            ))}
-            <Route path="*" element={<Navigate to="/about" replace />} />
-          </Routes>
-        </AnimatePresence>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Navigate to="/about" replace />} />
+          {routeConfig.map((route) => (
+            <Route key={route.path} path={route.path} element={route.element} />
+          ))}
+          <Route path="*" element={<Navigate to="/about" replace />} />
+        </Routes>
       </main>
       <Footer />
-    </div>
+      </div>
+    </MotionConfig>
   )
 }
 
