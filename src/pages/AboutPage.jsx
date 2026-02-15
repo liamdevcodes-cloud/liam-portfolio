@@ -12,6 +12,8 @@ function AboutPage() {
   const [cvPassword, setCvPassword] = useState('')
   const [cvError, setCvError] = useState('')
   const [photoLoadFailed, setPhotoLoadFailed] = useState(false)
+  const [photoSrc, setPhotoSrc] = useState(profile.profileImage)
+  const [photoFallbackUsed, setPhotoFallbackUsed] = useState(false)
 
   usePageMeta(
     'About Liam | ICT Portfolio',
@@ -45,6 +47,16 @@ function AboutPage() {
     setShowCvPrompt(false)
   }
 
+  const handlePhotoError = () => {
+    if (!photoFallbackUsed && profile.profileImageFallback) {
+      setPhotoSrc(profile.profileImageFallback)
+      setPhotoFallbackUsed(true)
+      return
+    }
+
+    setPhotoLoadFailed(true)
+  }
+
   return (
     <PageSection>
       <SectionHeading
@@ -63,9 +75,9 @@ function AboutPage() {
               transition={{ delay: 0.1 }}
             >
               <img
-                src={profile.profileImage}
+                src={photoSrc}
                 alt={profile.name}
-                onError={() => setPhotoLoadFailed(true)}
+                onError={handlePhotoError}
                 className="aspect-square w-32 rounded-full object-cover border-4 border-sky-100 dark:border-sky-900"
               />
             </motion.div>
@@ -151,9 +163,9 @@ function AboutPage() {
               transition={{ delay: 0.1 }}
             >
               <img
-                src={profile.profileImage}
+                src={photoSrc}
                 alt={profile.name}
-                onError={() => setPhotoLoadFailed(true)}
+                onError={handlePhotoError}
                 className="aspect-square w-48 rounded-full object-cover border-4 border-sky-100 dark:border-sky-900"
               />
             </motion.div>
