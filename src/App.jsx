@@ -54,6 +54,7 @@ function AppShell() {
             {routeConfig.map((route) => (
               <Route key={route.path} path={route.path} element={route.element} />
             ))}
+            <Route path="*" element={<Navigate to="/about" replace />} />
           </Routes>
         </AnimatePresence>
       </main>
@@ -64,7 +65,7 @@ function AppShell() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <AppShell />
     </BrowserRouter>
   )
