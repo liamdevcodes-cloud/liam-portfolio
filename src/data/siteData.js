@@ -25,7 +25,7 @@ export const profile = {
   linkedin: '',
   email: 'liam.dev.codes@gmail.com',
   cvPath: `${import.meta.env.BASE_URL}Liam-CV.pdf`,
-  profileImage: `${import.meta.env.BASE_URL}logo/logo.png`,
+  profileImage: `${import.meta.env.BASE_URL}logo/logo.png?v=2`,
   iconCloud: [
     { label: 'Windows', icon: FaWindows },
     { label: 'Linux', icon: FaLinux },

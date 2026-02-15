@@ -11,6 +11,7 @@ function AboutPage() {
   const [showCvPrompt, setShowCvPrompt] = useState(false)
   const [cvPassword, setCvPassword] = useState('')
   const [cvError, setCvError] = useState('')
+  const [photoLoadFailed, setPhotoLoadFailed] = useState(false)
 
   usePageMeta(
     'About Liam | ICT Portfolio',
@@ -54,7 +55,7 @@ function AboutPage() {
 
       <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
         <div className="panel space-y-6">
-          {profile.profileImage && (
+          {profile.profileImage && !photoLoadFailed && (
             <motion.div 
               className="flex justify-center lg:hidden"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -64,9 +65,17 @@ function AboutPage() {
               <img
                 src={profile.profileImage}
                 alt={profile.name}
+                onError={() => setPhotoLoadFailed(true)}
                 className="aspect-square w-32 rounded-full object-cover border-4 border-sky-100 dark:border-sky-900"
               />
             </motion.div>
+          )}
+          {photoLoadFailed && (
+            <div className="flex justify-center lg:hidden">
+              <div className="grid aspect-square w-32 place-items-center rounded-full border-4 border-sky-100 bg-sky-50 text-2xl font-bold text-sky-700 dark:border-sky-900 dark:bg-slate-800 dark:text-sky-300">
+                {profile.name?.[0] ?? 'L'}
+              </div>
+            </div>
           )}
 
           <motion.p 
@@ -134,7 +143,7 @@ function AboutPage() {
         </div>
 
         <aside className="panel space-y-6">
-          {profile.profileImage && (
+          {profile.profileImage && !photoLoadFailed && (
             <motion.div 
               className="hidden lg:flex justify-center"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -144,9 +153,17 @@ function AboutPage() {
               <img
                 src={profile.profileImage}
                 alt={profile.name}
+                onError={() => setPhotoLoadFailed(true)}
                 className="aspect-square w-48 rounded-full object-cover border-4 border-sky-100 dark:border-sky-900"
               />
             </motion.div>
+          )}
+          {photoLoadFailed && (
+            <div className="hidden justify-center lg:flex">
+              <div className="grid aspect-square w-48 place-items-center rounded-full border-4 border-sky-100 bg-sky-50 text-4xl font-bold text-sky-700 dark:border-sky-900 dark:bg-slate-800 dark:text-sky-300">
+                {profile.name?.[0] ?? 'L'}
+              </div>
+            </div>
           )}
 
           <div>
