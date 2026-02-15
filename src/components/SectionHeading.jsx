@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion'
 
 function SectionHeading({ eyebrow, title, description }) {
-  const titleWords = title.split(' ')
-
   return (
     <div className="space-y-3">
       <motion.p
@@ -15,25 +13,12 @@ function SectionHeading({ eyebrow, title, description }) {
       </motion.p>
 
       <motion.h1
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: {},
-          visible: { transition: { staggerChildren: 0.06, delayChildren: 0.08 } },
-        }}
-        aria-label={title}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.08 }}
         className="font-display text-3xl font-extrabold leading-tight sm:text-4xl"
       >
-        {titleWords.map((word, index) => (
-          <motion.span
-            key={`${word}-${index}`}
-            variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }}
-            transition={{ duration: 0.25 }}
-            className="mr-2 inline-block"
-          >
-            {word}
-          </motion.span>
-        ))}
+        {title}
       </motion.h1>
 
       <motion.p

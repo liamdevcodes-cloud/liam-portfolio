@@ -106,33 +106,18 @@ function ContactPage() {
         >
           <h2 className="font-display text-xl font-bold">Contact Details</h2>
           <div className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
-            <motion.p 
-              className="flex items-center gap-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-            >
+            <p className="flex items-center gap-2">
               <FiMail className="text-sky-700 dark:text-sky-300" />
               {profile.email}
-            </motion.p>
-            <motion.p 
-              className="flex items-center gap-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
+            </p>
+            <p className="flex items-center gap-2">
               <FiMapPin className="text-sky-700 dark:text-sky-300" />
               {profile.location}
-            </motion.p>
+            </p>
           </div>
-          <motion.p 
-            className="text-sm text-slate-600 dark:text-slate-300"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
+          <p className="text-sm text-slate-600 dark:text-slate-300">
             Feel free to reach out for internships, collaborations, or any questions about my work.
-          </motion.p>
+          </p>
         </motion.aside>
 
         <motion.form 
@@ -144,12 +129,7 @@ function ContactPage() {
           transition={{ delay: 0.2 }}
         >
           <div className="grid gap-4 sm:grid-cols-2">
-            <motion.label 
-              className="text-sm font-semibold"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
+            <label className="text-sm font-semibold">
               Name
               <input
                 type="text"
@@ -159,14 +139,9 @@ function ContactPage() {
                 className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition focus:border-sky-500 dark:border-slate-700 dark:bg-slate-900"
               />
               {errors.name && <span className="mt-1 block text-xs text-red-600">{errors.name}</span>}
-            </motion.label>
+            </label>
 
-            <motion.label 
-              className="text-sm font-semibold"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35 }}
-            >
+            <label className="text-sm font-semibold">
               Email
               <input
                 type="email"
@@ -176,15 +151,10 @@ function ContactPage() {
                 className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition focus:border-sky-500 dark:border-slate-700 dark:bg-slate-900"
               />
               {errors.email && <span className="mt-1 block text-xs text-red-600">{errors.email}</span>}
-            </motion.label>
+            </label>
           </div>
 
-          <motion.label 
-            className="block text-sm font-semibold"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
+          <label className="block text-sm font-semibold">
             Subject
             <input
               type="text"
@@ -194,14 +164,9 @@ function ContactPage() {
               className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition focus:border-sky-500 dark:border-slate-700 dark:bg-slate-900"
             />
             {errors.subject && <span className="mt-1 block text-xs text-red-600">{errors.subject}</span>}
-          </motion.label>
+          </label>
 
-          <motion.label 
-            className="block text-sm font-semibold"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45 }}
-          >
+          <label className="block text-sm font-semibold">
             Message
             <textarea
               name="message"
@@ -211,7 +176,7 @@ function ContactPage() {
               className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition focus:border-sky-500 dark:border-slate-700 dark:bg-slate-900"
             />
             {errors.message && <span className="mt-1 block text-xs text-red-600">{errors.message}</span>}
-          </motion.label>
+          </label>
 
           <motion.button 
             type="submit" 

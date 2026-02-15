@@ -39,7 +39,7 @@
 
 @layer components {
   .panel {
-    @apply rounded-2xl border border-slate-200/70 bg-white/80 p-6 shadow-panel backdrop-blur-md transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900/70;
+    @apply rounded-2xl border border-slate-200/70 bg-white/80 p-6 shadow-panel backdrop-blur-sm transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900/70;
   }
 
   .cta-primary {
@@ -48,5 +48,16 @@
 
   .cta-secondary {
     @apply inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white/80 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:text-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
