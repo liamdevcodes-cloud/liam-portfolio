@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script>
+      (function () {
+        var current = window.location
+        var repoBase = '/liam-portfolio'
+        var path = current.pathname.replace(repoBase, '')
+        var normalized = path.startsWith('/') ? path.slice(1) : path
+        var query = current.search ? '&' + current.search.slice(1) : ''
+        var hash = current.hash || ''
+        var target = repoBase + '/#/' + normalized + query + hash
+        window.location.replace(target)
+      })()
+    </script>
+  </head>
+  <body></body>
+</html>
