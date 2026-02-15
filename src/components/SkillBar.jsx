@@ -9,6 +9,7 @@ function SkillBar({ skill, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
+      whileHover={{ y: -2 }}
       className="panel"
     >
       <div className="mb-4 flex items-center justify-between gap-3">
@@ -20,13 +21,20 @@ function SkillBar({ skill, index }) {
         </div>
         <span className="text-sm font-semibold text-slate-500 dark:text-slate-300">{skill.level}%</span>
       </div>
-      <div className="h-2 rounded-full bg-slate-200 dark:bg-slate-700">
+      <div className="relative h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${skill.level}%` }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.7, delay: 0.15 + index * 0.07 }}
+          transition={{ duration: 0.8, delay: 0.12 + index * 0.06, ease: 'easeOut' }}
           className="h-2 rounded-full bg-gradient-to-r from-sky-700 to-cyan-500"
+        />
+        <motion.span
+          initial={{ x: '-120%' }}
+          whileInView={{ x: '220%' }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.9, delay: 0.25 + index * 0.06 }}
+          className="absolute inset-y-0 w-10 bg-white/30 blur-[1px]"
         />
       </div>
     </motion.article>

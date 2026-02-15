@@ -43,7 +43,7 @@ function AppShell() {
   )
 
   return (
-    <MotionConfig reducedMotion="always" transition={{ duration: 0.01 }}>
+    <MotionConfig reducedMotion="user" transition={{ duration: 0.22, ease: 'easeOut' }}>
       <div className="relative min-h-screen bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
       <Navbar theme={theme} setTheme={setTheme} />
       <main className="mx-auto w-full max-w-6xl px-4 pb-28 pt-28 sm:px-6 lg:px-8">
