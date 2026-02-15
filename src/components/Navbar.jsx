@@ -20,6 +20,14 @@ function linkClass({ isActive }) {
   }`
 }
 
+function mobileLinkClass({ isActive }) {
+  return `block w-full rounded-lg px-3 py-3 text-base font-semibold transition ${
+    isActive
+      ? 'bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-200'
+      : 'text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800/70'
+  }`
+}
+
 function Navbar({ theme, setTheme }) {
   const [open, setOpen] = useState(false)
 
@@ -54,14 +62,16 @@ function Navbar({ theme, setTheme }) {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
-          className="space-y-2 border-t border-slate-200 bg-white px-4 py-4 dark:border-slate-800 dark:bg-slate-950 md:hidden"
+          className="max-h-[calc(100vh-70px)] space-y-2 overflow-y-auto border-t border-slate-200 bg-white px-4 pb-20 pt-4 dark:border-slate-800 dark:bg-slate-950 md:hidden"
         >
           {links.map((link) => (
-            <NavLink key={link.to} to={link.to} className={linkClass} onClick={() => setOpen(false)}>
+            <NavLink key={link.to} to={link.to} className={mobileLinkClass} onClick={() => setOpen(false)}>
               {link.label}
             </NavLink>
           ))}
-          <ThemeToggle theme={theme} setTheme={setTheme} />
+          <div className="pt-1">
+            <ThemeToggle theme={theme} setTheme={setTheme} />
+          </div>
         </motion.div>
       )}
     </header>
