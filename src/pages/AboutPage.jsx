@@ -1,4 +1,4 @@
-import { FiArrowRight, FiDownload, FiSend } from 'react-icons/fi'
+import { FiArrowRight, FiSend } from 'react-icons/fi'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
@@ -8,9 +8,6 @@ import { highlights, profile } from '../data/siteData'
 import usePageMeta from '../hooks/usePageMeta'
 
 function AboutPage() {
-  const [showCvPrompt, setShowCvPrompt] = useState(false)
-  const [cvPassword, setCvPassword] = useState('')
-  const [cvError, setCvError] = useState('')
   const [photoLoadFailed, setPhotoLoadFailed] = useState(false)
   const [photoSrc, setPhotoSrc] = useState(profile.profileImage)
   const [photoFallbackUsed, setPhotoFallbackUsed] = useState(false)
@@ -19,33 +16,6 @@ function AboutPage() {
     'About Liam | ICT Portfolio',
     'Learn more about Liam, an ICT specialist and network engineer in training with strong networking and system administration skills.',
   )
-
-  const handleCvUnlock = (event) => {
-    event.preventDefault()
-
-    const configuredPassword = import.meta.env.VITE_CV_PASSWORD
-
-    if (!configuredPassword) {
-      setCvError('CV password is not configured yet.')
-      return
-    }
-
-    if (cvPassword !== configuredPassword) {
-      setCvError('Incorrect password.')
-      return
-    }
-
-    const link = document.createElement('a')
-    link.href = profile.cvPath
-    link.download = ''
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-
-    setCvPassword('')
-    setCvError('')
-    setShowCvPrompt(false)
-  }
 
   const handlePhotoError = () => {
     if (!photoFallbackUsed && profile.profileImageFallback) {
@@ -133,16 +103,6 @@ function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <motion.button
-              type="button"
-              onClick={() => setShowCvPrompt(true)}
-              className="cta-primary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <FiDownload />
-              Download CV
-            </motion.button>
             <Link to="/projects" className="cta-secondary">
               <FiArrowRight />
               View Projects
@@ -203,50 +163,6 @@ function AboutPage() {
         </aside>
       </div>
 
-      {showCvPrompt && (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-slate-950/45 px-4" onClick={() => setShowCvPrompt(false)}>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            onClick={(event) => event.stopPropagation()}
-            className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-6 shadow-panel dark:border-slate-700 dark:bg-slate-900"
-          >
-            <h3 className="font-display text-lg font-bold">Enter CV Password</h3>
-            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-              Please enter the password to download the CV.
-            </p>
-            <form className="mt-4 space-y-3" onSubmit={handleCvUnlock}>
-              <input
-                type="password"
-                value={cvPassword}
-                onChange={(event) => {
-                  setCvPassword(event.target.value)
-                  setCvError('')
-                }}
-                placeholder="Password"
-                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition focus:border-sky-500 dark:border-slate-700 dark:bg-slate-900"
-              />
-              {cvError && <p className="text-xs text-red-600">{cvError}</p>}
-              <div className="flex gap-2">
-                <button type="submit" className="cta-primary">
-                  Unlock
-                </button>
-                <button
-                  type="button"
-                  className="cta-secondary"
-                  onClick={() => {
-                    setShowCvPrompt(false)
-                    setCvPassword('')
-                    setCvError('')
-                  }}
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </motion.div>
-        </div>
-      )}
     </PageSection>
   )
 }

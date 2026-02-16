@@ -24,7 +24,6 @@ export const profile = {
   github: 'https://github.com/liamdevcodes-cloud',
   linkedin: '',
   email: 'liam.dev.codes@gmail.com',
-  cvPath: `${import.meta.env.BASE_URL}Liam-CV.pdf`,
   profileImage: `${import.meta.env.BASE_URL}logo/logo.png?v=2`,
   profileImageFallback: 'https://liamdevcodes-cloud.github.io/liam-portfolio/logo/logo.png?v=2',
   iconCloud: [
